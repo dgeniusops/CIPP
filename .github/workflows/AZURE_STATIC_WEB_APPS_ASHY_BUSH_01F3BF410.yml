@@ -1,4 +1,4 @@
-name: CIPP Static Web App Frontend CI/CD
+name: Static Web App Frontend CI/CD
 
 on:
   push:
@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Build and Deploy Job
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v2
         with:
           submodules: true
       - name: Build And Deploy
