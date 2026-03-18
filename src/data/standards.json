@@ -1344,6 +1344,70 @@
     "recommendedBy": []
   },
   {
+    "name": "standards.AppManagementPolicy",
+    "cat": "Entra (AAD) Standards",
+    "tag": [],
+    "helpText": "Configures the default app management policy to control application and service principal credential restrictions such as password and key credential lifetimes.",
+    "docsDescription": "Configures the default app management policy to control application and service principal credential restrictions. This includes password addition restrictions, custom password addition, symmetric key addition, and credential lifetime limits for both applications and service principals.",
+    "executiveText": "Enforces credential restrictions on application registrations and service principals to limit how secrets and certificates are created and how long they remain valid. This reduces the risk of long-lived or unmanaged credentials being used to access your tenant.",
+    "addedComponent": [
+      {
+        "type": "autoComplete",
+        "multiple": false,
+        "creatable": false,
+        "required": false,
+        "name": "standards.AppManagementPolicy.passwordCredentialsPasswordAddition",
+        "label": "Password Addition",
+        "options": [
+          {
+            "label": "Enabled",
+            "value": "enabled"
+          },
+          {
+            "label": "Disabled",
+            "value": "disabled"
+          }
+        ]
+      },
+      {
+        "type": "autoComplete",
+        "multiple": false,
+        "creatable": false,
+        "required": false,
+        "name": "standards.AppManagementPolicy.passwordCredentialsCustomPasswordAddition",
+        "label": "Custom Password",
+        "options": [
+          {
+            "label": "Enabled",
+            "value": "enabled"
+          },
+          {
+            "label": "Disabled",
+            "value": "disabled"
+          }
+        ]
+      },
+      {
+        "type": "number",
+        "required": false,
+        "name": "standards.AppManagementPolicy.passwordCredentialsMaxLifetime",
+        "label": "Password Credentials Max Lifetime (Days)"
+      },
+      {
+        "type": "number",
+        "required": false,
+        "name": "standards.AppManagementPolicy.keyCredentialsMaxLifetime",
+        "label": "Key Credentials Max Lifetime (Days)"
+      }
+    ],
+    "label": "Set Default App Management Policy",
+    "impact": "Medium Impact",
+    "impactColour": "warning",
+    "addedDate": "2026-03-13",
+    "powershellEquivalent": "Graph API",
+    "recommendedBy": []
+  },
+  {
     "name": "standards.OutBoundSpamAlert",
     "cat": "Exchange Standards",
     "tag": ["CIS M365 5.0 (2.1.6)"],
@@ -4045,6 +4109,28 @@
     "recommendedBy": []
   },
   {
+    "name": "standards.intuneRestrictUserDeviceRegistration",
+    "cat": "Entra (AAD) Standards",
+    "tag": [],
+    "helpText": "Controls whether users can register devices with Entra.",
+    "docsDescription": "Configures whether users can register devices with Entra. When disabled, users are unable to register devices with Entra.",
+    "executiveText": "Controls whether employees can register their devices for corporate access. Disabling user device registration prevents unauthorized or unmanaged devices from connecting to company resources, enhancing overall security posture.",
+    "addedComponent": [
+      {
+        "type": "switch",
+        "name": "standards.intuneRestrictUserDeviceRegistration.disableUserDeviceRegistration",
+        "label": "Disable users from registering devices",
+        "defaultValue": true
+      }
+    ],
+    "label": "Configure user restriction for Entra device registration",
+    "impact": "High Impact",
+    "impactColour": "warning",
+    "addedDate": "2026-02-23",
+    "powershellEquivalent": "Update-MgBetaPolicyDeviceRegistrationPolicy",
+    "recommendedBy": []
+  },
+  {
     "name": "standards.intuneRequireMFA",
     "cat": "Intune Standards",
     "tag": ["ZTNA21782", "ZTNA21796", "ZTNA21872"],
@@ -5387,6 +5473,11 @@
         "required": false,
         "name": "customGroup",
         "label": "Enter the custom group name if you selected 'Assign to Custom Group'. Wildcards are allowed."
+      },
+      {
+        "type": "switch",
+        "name": "verifyAssignments",
+        "label": "Verify policy assignments"
       },
       {
         "name": "excludeGroup",
